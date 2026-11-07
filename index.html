@@ -82,6 +82,7 @@ body { padding: calc(env(safe-area-inset-top, 0px) + 10px) max(14px, env(safe-ar
 .pp-label { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,241,234,.62); margin: 0 0 6px; font-weight: 600; }
 .pp-big { font-family: var(--display); font-weight: 400; font-size: clamp(42px, 9vw, 68px); line-height: 1; letter-spacing: -.02em; margin: 0; }
 .pp-big small { font-family: var(--body); font-size: .3em; font-weight: 600; letter-spacing: .08em; color: var(--gold-soft); margin-right: 8px; vertical-align: .9em; }
+.pp-center { text-align: center; }
 .pp-lead { margin: 12px 0 0; font-size: 15px; line-height: 1.55; color: rgba(244,241,234,.85); max-width: 46ch; }
 .pp-lead b { color: #fff; }
 .pp-lead b.pp-g { color: #6EE7B7; }
@@ -241,8 +242,8 @@ body { padding: calc(env(safe-area-inset-top, 0px) + 10px) max(14px, env(safe-ar
     </div>
     <div class="pp-main">
       <div>
-        <p class="pp-label">Total portfolio · con cash</p>
-        <p class="pp-big"><small>USD</small><span data-draw="k-total" data-source="resumen" data-field="total" data-row="0" data-fetchpriority="high">—</span></p>
+        <p class="pp-label pp-center">Total portfolio · con cash</p>
+        <p class="pp-big pp-center"><small>USD</small><span data-draw="k-total" data-source="resumen" data-field="total" data-row="0" data-fetchpriority="high">—</span></p>
         <p class="pp-lead">En 2026 los activos sin cash ganaron USD <b class="pp-g" data-draw="g-anio-t" data-source="resumen" data-field="ganancia_anio" data-row="0">—</b>, un <b data-draw="g-pct-t" data-source="resumen" data-field="ganancia_pct" data-row="0">—</b> en <b data-draw="meses" data-source="resumen" data-field="meses" data-row="0">—</b> meses: <b data-draw="anual-t" data-source="resumen" data-field="anualizada" data-row="0">—</b> anualizado.</p>
       </div>
       <div class="pp-sin">
