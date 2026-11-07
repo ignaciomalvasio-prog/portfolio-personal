@@ -1,0 +1,1032 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio personal</title>
+<meta name="theme-color" content="#0A1626">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Portfolio">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+:root {
+  --color-bg: #EEF1F5; --color-panel: #FFFFFF; --color-fg: #0E1726; --color-fg-muted: #5B6676;
+  --color-border-line: #D5DBE3; --color-ok: #1F9D6B; --color-warn: #C98A12; --color-bad: #D9485F;
+  --cds-font-size-caption: 12.5px; --cds-font-size-body: 15px; --cds-font-size-heading: 18px; --cds-font-size-title: 28px;
+  --cds-font-weight-medium: 600; --cds-radius: 10px; --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 20px;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 14px; --cds-gap-lg: 20px; --cds-gap-xl: 28px;
+  --cds-chart-grid: rgba(14,23,38,.08); --cds-chart-axis: rgba(14,23,38,.35); --cds-chart-reference: rgba(14,23,38,.35);
+  --cds-chart-status-critical: #D9485F; --cds-chart-muted: #A0AAB8; --cds-surface-popover: #fff; --cds-border: #D5DBE3;
+  --cds-shadow-popover: 0 8px 24px rgba(0,0,0,.18); --cds-text-secondary: #5B6676; --cds-dur-slow: 320ms; --cds-ease-out: cubic-bezier(.2,.7,.2,1);
+  --font-anthropic-sans: "Manrope", system-ui, sans-serif; --font-anthropic-serif: "Fraunces", Georgia, serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root {
+  --color-bg: #070D17; --color-panel: #0F1928; --color-fg: #EAF0F7; --color-fg-muted: #93A1B5; --color-border-line: #26344A;
+  --cds-chart-grid: rgba(234,240,247,.08); --cds-chart-axis: rgba(234,240,247,.35); --cds-chart-reference: rgba(234,240,247,.4);
+  --cds-surface-popover: #16233A; --cds-border: #26344A; --cds-text-secondary: #93A1B5; color-scheme: dark;
+} }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; background: var(--color-bg); color: var(--color-fg); font-family: var(--font-anthropic-sans); -webkit-text-size-adjust: 100%; }
+body { padding: calc(env(safe-area-inset-top, 0px) + 10px) max(14px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 28px) max(14px, env(safe-area-inset-left, 0px)); }
+.dash-select { appearance: none; font: inherit; font-size: 14px; color: var(--color-fg); padding: 8px 34px 8px 12px; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%; background-size: 5px 5px; background-repeat: no-repeat; }
+.app-bar { max-width: 1100px; margin: 0 auto 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12.5px; color: var(--color-fg-muted); }
+.app-bar button, .setup button { font: inherit; font-weight: 700; border-radius: 999px; padding: 8px 14px; border: 1px solid color-mix(in srgb, #D4A64A 60%, transparent); background: color-mix(in srgb, #D4A64A 14%, var(--color-panel)); color: var(--color-fg); cursor: pointer; }
+.app-bar button:disabled { opacity: .6; }
+.app-err { max-width: 1100px; margin: 0 auto 14px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--color-bad); color: var(--color-bad); background: color-mix(in srgb, var(--color-bad) 8%, var(--color-panel)); font-size: 13.5px; }
+.setup { max-width: 440px; margin: 8vh auto; display: grid; gap: 14px; padding: 26px; border-radius: 22px; color: #F4F1EA; background: radial-gradient(120% 140% at 100% 0%, #1B4A6B 0%, #10263D 42%, #0A1626 100%); border: 1px solid rgba(212,166,74,.55); }
+.setup h1 { margin: 0; font-family: var(--font-anthropic-serif); font-weight: 600; font-size: 28px; }
+.setup p { margin: 0; font-size: 14px; color: rgba(244,241,234,.8); line-height: 1.5; }
+.setup label { display: grid; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #F1DDA8; }
+.setup input { font: inherit; font-size: 15px; text-transform: none; letter-spacing: 0; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.07); color: #fff; }
+.setup button { background: #D4A64A; color: #1E1503; border: 0; padding: 12px; }
+
+
+/* Layout: una banda oscura de cabecera con los indicadores, después tarjetas con borde marcado. */
+
+.pp {
+  --ink: #0A1626; --ink-2: #10263D; --gold: #D4A64A; --gold-soft: #F1DDA8;
+  --up: #1F9D6B; --down: #D9485F; --line: color-mix(in srgb, var(--color-fg) 16%, transparent);
+  --line-strong: color-mix(in srgb, var(--color-fg) 26%, transparent);
+  --card: var(--color-panel); --soft: color-mix(in srgb, var(--color-fg) 4%, var(--color-panel));
+  --display: "Fraunces", var(--font-anthropic-serif), Georgia, serif;
+  --body: "Manrope", var(--font-anthropic-sans), system-ui, sans-serif;
+  max-width: 1100px; margin-inline: auto; display: grid; gap: 22px;
+  font-family: var(--body); color: var(--color-fg); font-variant-numeric: tabular-nums;
+}
+.pp b { font-weight: 700; }
+.pp-pos { color: var(--up); } .pp-neg { color: var(--down); }
+
+/* Cabecera */
+.pp-hero {
+  position: relative; overflow: hidden; border-radius: 22px; color: #F4F1EA;
+  background: radial-gradient(120% 140% at 100% 0%, #1B4A6B 0%, var(--ink-2) 42%, var(--ink) 100%);
+  border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  box-shadow: 0 18px 40px -22px rgba(6, 18, 32, .65), inset 0 1px 0 rgba(255,255,255,.08);
+  padding: clamp(18px, 4vw, 34px); display: grid; gap: 22px;
+}
+.pp-hero::after { content: ""; position: absolute; inset: auto -60px -90px auto; width: 260px; height: 260px; border-radius: 50%; border: 1px solid rgba(212,166,74,.25); pointer-events: none; }
+.pp-top { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; }
+.pp-brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: 12px; color: var(--gold-soft); }
+.pp-mark { width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--gold), #9C7426); box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
+.pp-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(241,221,168,.45); background: rgba(241,221,168,.08); color: var(--gold-soft); }
+.pp-chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+.pp-main { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 22px; align-items: end; }
+.pp-label { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,241,234,.62); margin: 0 0 6px; font-weight: 600; }
+.pp-big { font-family: var(--display); font-weight: 400; font-size: clamp(42px, 9vw, 68px); line-height: 1; letter-spacing: -.02em; margin: 0; }
+.pp-big small { font-family: var(--body); font-size: .3em; font-weight: 600; letter-spacing: .08em; color: var(--gold-soft); margin-right: 8px; vertical-align: .9em; }
+.pp-lead { margin: 12px 0 0; font-size: 15px; line-height: 1.55; color: rgba(244,241,234,.85); max-width: 46ch; }
+.pp-lead b { color: #fff; }
+.pp-lead b.pp-g { color: #6EE7B7; }
+.pp-sin { border-radius: 16px; padding: 16px 18px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14); display: grid; gap: 4px; }
+.pp-sin .pp-mid { font-family: var(--display); font-size: clamp(28px, 6vw, 38px); line-height: 1.05; }
+.pp-sin .pp-sub { font-size: 12px; color: rgba(244,241,234,.6); }
+.pp-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.pp-tile { border-radius: 14px; padding: 14px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.13); display: grid; gap: 6px; min-height: 84px; align-content: space-between; }
+.pp-tile span { font-size: 11.5px; color: rgba(244,241,234,.66); font-weight: 600; letter-spacing: .02em; }
+.pp-tile b { font-family: var(--display); font-weight: 400; font-size: clamp(22px, 4.6vw, 28px); line-height: 1.05; color: #fff; }
+.pp-tile b.pp-pos { color: #6EE7B7; } .pp-tile b.pp-neg { color: #FDA4AF; }
+.pp-tile.pp-hl { background: linear-gradient(160deg, rgba(212,166,74,.22), rgba(212,166,74,.05)); border-color: rgba(212,166,74,.55); }
+.pp-curso { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin: 0; padding: 12px 16px; border-radius: 14px; font-size: 13.5px;
+  background: color-mix(in srgb, #F59E0B 12%, var(--color-panel)); border: 1px solid color-mix(in srgb, #F59E0B 55%, transparent); }
+.pp-curso::before { content: "EN CURSO"; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; padding: 3px 8px; border-radius: 6px; background: #F59E0B; color: #2A1A00; }
+
+/* Tarjetas */
+.pp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: 18px; }
+.pp-card { background: var(--card); border: 1px solid var(--line-strong); border-radius: 20px; padding: clamp(16px, 3vw, 24px); display: grid; gap: 16px; align-content: start; min-width: 0;
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--color-fg) 6%, transparent), 0 14px 30px -24px rgba(10, 22, 38, .45); }
+.pp-card h2 { margin: 0; font-family: var(--display); font-weight: 600; font-size: 20px; letter-spacing: -.01em; text-wrap: balance; display: flex; align-items: center; gap: 10px; }
+.pp-card h2::before { content: ""; width: 10px; height: 10px; border-radius: 3px; background: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 25%, transparent); }
+.pp-note { margin: 4px 0 0; color: var(--color-fg-muted); font-size: 13px; }
+.pp-cardhead { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: flex-start; }
+.pp-cardhead > div { min-width: 0; }
+.pp-comp-total { font-family: var(--display); font-size: 30px; line-height: 1; margin-top: 8px; display: block; }
+.pp-comp-total small { font-family: var(--body); font-size: 12px; color: var(--color-fg-muted); font-weight: 600; margin-right: 6px; }
+.pp .dash-select { font-weight: 600; border: 1px solid var(--line-strong); border-radius: 10px; background-color: var(--soft); }
+.pp-stack { display: flex; height: 22px; border-radius: 999px; overflow: hidden; gap: 3px; padding: 3px; background: var(--soft); border: 1px solid var(--line); }
+.pp-stack > div { min-width: 3px; border-radius: 999px; }
+.pp-rubros { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 12px; min-height: 12rem; }
+.pp-rubro { border-radius: 16px; border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); background: linear-gradient(180deg, color-mix(in srgb, var(--c) 10%, var(--color-panel)), var(--color-panel) 70%); padding: 14px; display: grid; gap: 10px; align-content: start; }
+.pp-rline { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: baseline; }
+.pp-rname { font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: color-mix(in srgb, var(--c) 70%, var(--color-fg)); }
+.pp-rpct { justify-self: end; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--c); color: #fff; }
+.pp-rusd { grid-column: 1 / -1; font-family: var(--display); font-size: 26px; line-height: 1; }
+.pp-rusd small { font-family: var(--body); font-size: 11px; color: var(--color-fg-muted); margin-right: 4px; font-weight: 600; }
+.pp-items { display: grid; gap: 8px; border-top: 1px dashed color-mix(in srgb, var(--c) 40%, transparent); padding-top: 10px; }
+.pp-item { display: grid; grid-template-columns: minmax(0, 1fr) auto 3.4rem; gap: 2px 10px; font-size: 13px; align-items: center; }
+.pp-item > :first-child { overflow-wrap: anywhere; }
+.pp-item .pp-m { color: var(--color-fg-muted); font-size: 12px; text-align: right; }
+.pp-item .pp-v { font-weight: 600; text-align: right; }
+.pp-bar { grid-column: 1 / -1; height: 4px; border-radius: 4px; background: color-mix(in srgb, var(--c) 14%, transparent); overflow: hidden; }
+.pp-bar > i { display: block; height: 100%; border-radius: 4px; background: var(--c); }
+.pp-compgrid { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.pp-pie { position: relative; min-height: 280px; display: grid; place-items: center; }
+.pp-pie svg { display: block; max-width: 300px; }
+.pp-pie-c { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; pointer-events: none; gap: 2px; }
+.pp-pie-c .l { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-fg-muted); }
+.pp-pie-c .v { font-family: var(--display); font-size: 30px; line-height: 1; }
+.pp-pie-c .s { font-size: 12.5px; font-weight: 600; color: var(--color-fg-muted); }
+.pp-legend { display: flex; flex-wrap: wrap; gap: 8px; }
+.pp-legend span { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--soft); }
+.pp-legend i { width: 14px; height: 4px; border-radius: 2px; display: inline-block; }
+.pp-chart { position: relative; min-height: 250px; }
+.pp-chart svg { display: block; overflow: visible; }
+.pp-tip { position: absolute; background: var(--ink); color: #F4F1EA; border: 1px solid rgba(212,166,74,.6); border-radius: 12px; box-shadow: 0 12px 28px -12px rgba(0,0,0,.5); padding: 8px 12px; font-size: 12.5px; pointer-events: none; white-space: nowrap; display: grid; gap: 3px; z-index: 2; }
+.pp-tip .d { color: var(--gold-soft); font-weight: 700; font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase; }
+.pp-tip i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; }
+.pp-fail { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: inherit; color: var(--color-fg-muted); font-size: 13px; }
+.pp-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+.pp-tablewrap { overflow-x: auto; border: 1px solid var(--line-strong); border-radius: 14px; }
+.pp-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.pp-table th { text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-fg-muted); padding: 12px 14px; background: var(--soft); border-bottom: 1px solid var(--line-strong); }
+.pp-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.pp-table tbody tr:last-child td { border-bottom: 0; }
+.pp-table tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--color-fg) 2.5%, transparent); }
+.pp-table td:first-child { font-weight: 600; }
+.pp-table th.n, .pp-table td.n { text-align: right; white-space: nowrap; }
+.pp-table td.pp-pos, .pp-table td.pp-neg { font-weight: 700; }
+.pp-table td.m { color: var(--color-fg-muted); font-size: 12.5px; }
+.pp-table td.r span { display: inline-block; padding: 3px 9px; border-radius: 999px; font-weight: 700; font-size: 12.5px; background: color-mix(in srgb, var(--gold) 20%, transparent); border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent); }
+.pp-notes { font-size: 13px; color: var(--color-fg-muted); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; background: var(--soft); }
+.pp-notes summary { cursor: pointer; color: var(--color-fg); font-weight: 600; }
+.pp-notes dl { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 8px 16px; margin: 14px 0 0; }
+.pp-notes dt { color: var(--color-fg); font-weight: 600; }
+.pp-notes dd { margin: 0; line-height: 1.5; }
+.pp-item { cursor: pointer; border-radius: 10px; padding: 6px 8px; margin: -6px -8px; transition: background .15s; }
+.pp-item:hover, .pp-item:focus-visible { background: color-mix(in srgb, var(--c) 12%, transparent); outline: none; }
+.pp-table tbody tr { cursor: pointer; }
+.pp-table tbody tr:hover td { background: color-mix(in srgb, var(--gold) 10%, transparent); }
+.pp-dlg { width: min(680px, calc(100vw - 20px)); max-height: min(88vh, 900px); padding: 0; border-radius: 22px; border: 1px solid color-mix(in srgb, var(--gold) 60%, transparent); background: var(--color-panel); color: var(--color-fg); box-shadow: 0 30px 80px -20px rgba(4, 10, 20, .7); font-family: var(--body); font-variant-numeric: tabular-nums; overflow: auto; }
+.pp-dlg { overscroll-behavior: contain; }
+.pp-dlg::backdrop { background: rgba(6, 14, 26, .62); backdrop-filter: blur(3px); }
+.pp-dlgbar { position: sticky; top: 0; z-index: 3; display: flex; justify-content: flex-end; padding: 10px 10px 0; pointer-events: none; }
+.pp-close { pointer-events: auto; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.35); background: rgba(10,22,38,.75); color: #fff; font-size: 18px; line-height: 1; cursor: pointer; }
+.pp-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.pp-det { display: grid; gap: 16px; padding: 0 clamp(14px, 4vw, 24px) 24px; margin-top: -46px; }
+.pp-dhero { margin: 0 calc(-1 * clamp(14px, 4vw, 24px)); padding: 22px clamp(14px, 4vw, 24px) 20px; background: radial-gradient(120% 140% at 100% 0%, #1B4A6B 0%, var(--ink-2) 45%, var(--ink) 100%); color: #F4F1EA; display: grid; gap: 8px; border-bottom: 1px solid color-mix(in srgb, var(--gold) 50%, transparent); }
+.pp-dhero h3 { margin: 0; font-family: var(--display); font-weight: 600; font-size: clamp(20px, 5vw, 26px); padding-right: 44px; text-wrap: balance; }
+.pp-dchips { display: flex; flex-wrap: wrap; gap: 6px; }
+.pp-dchip { font-size: 11.5px; font-weight: 700; letter-spacing: .05em; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); }
+.pp-dchip.c { background: var(--c); border-color: transparent; color: #fff; }
+.pp-dval { font-family: var(--display); font-size: clamp(32px, 8vw, 44px); line-height: 1; }
+.pp-dval small { font-family: var(--body); font-size: 13px; font-weight: 700; color: var(--gold-soft); margin-right: 6px; }
+.pp-dsub { font-size: 13px; color: rgba(244,241,234,.75); }
+.pp-dsub b.pp-pos { color: #6EE7B7; } .pp-dsub b.pp-neg { color: #FDA4AF; }
+.pp-sec { display: grid; gap: 10px; border: 1px solid var(--line-strong); border-radius: 16px; padding: 14px 16px; background: var(--soft); min-width: 0; }
+.pp-sec h4 { margin: 0; font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: color-mix(in srgb, var(--gold) 60%, var(--color-fg)); }
+.pp-kv { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); gap: 10px; }
+.pp-kv > div { display: grid; gap: 2px; padding: 10px 12px; border-radius: 12px; background: var(--color-panel); border: 1px solid var(--line); }
+.pp-kv span { font-size: 11.5px; color: var(--color-fg-muted); font-weight: 600; }
+.pp-kv b { font-size: 16px; }
+.pp-mini { display: flex; align-items: flex-end; gap: 4px; height: 96px; padding-top: 14px; }
+.pp-mini > button { flex: 1; display: grid; gap: 4px; justify-items: center; min-width: 0; height: 100%; align-content: end; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; border-radius: 6px; }
+.pp-mini > button:hover i { background: color-mix(in srgb, var(--c) 70%, transparent); }
+.pp-mini > button:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+.pp-mini > button.on small { color: var(--color-fg); font-weight: 800; }
+.pp-mini i { display: block; width: 100%; max-width: 26px; border-radius: 5px 5px 2px 2px; background: color-mix(in srgb, var(--c) 45%, transparent); }
+.pp-mini > button.on i { background: var(--c); }
+.pp-mini small { font-size: 10px; color: var(--color-fg-muted); }
+.pp-flows { width: 100%; border-collapse: collapse; font-size: 13px; }
+.pp-flows th { text-align: left; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--color-fg-muted); padding: 6px 8px; border-bottom: 1px solid var(--line-strong); }
+.pp-flows td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.pp-flows tr:last-child td { border-bottom: 0; }
+.pp-flows .n { text-align: right; white-space: nowrap; }
+.pp-flows .nt { color: var(--color-fg-muted); font-size: 12px; overflow-wrap: anywhere; }
+.pp-flows tr.venc td { font-weight: 700; }
+.pp-more { font-size: 12px; color: var(--color-fg-muted); margin: 0; }
+.pp-tag { display: inline-block; margin-top: 3px; font-size: 10.5px; font-weight: 800; letter-spacing: .06em; padding: 2px 7px; border-radius: 6px; background: color-mix(in srgb, var(--up) 18%, transparent); color: var(--up); }
+.pp-tag.p { background: color-mix(in srgb, var(--gold) 20%, transparent); color: color-mix(in srgb, var(--gold) 70%, var(--color-fg)); }
+[data-dash-source-state=empty] { color: transparent; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+@media (max-width: 760px) {
+  .pp-compgrid { grid-template-columns: minmax(0, 1fr); }
+  .pp-main { grid-template-columns: minmax(0, 1fr); }
+  .pp-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pp-wide { display: none; }
+  .pp-notes dl { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pp-hero { animation: pp-in var(--cds-dur-slow) var(--cds-ease-out); }
+  @keyframes pp-in { from { transform: translateY(6px); } to { transform: none; } }
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="dash-shim.js"></script>
+</head>
+<body>
+<form class="setup" id="setup" hidden>
+  <h1>Portfolio personal</h1>
+  <p>Pegá la dirección del script de Google de tu sheet y la clave. Se guardan solo en este teléfono.</p>
+  <label for="cfg-url">Dirección del script<input id="cfg-url" type="url" required placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off"></label>
+  <label for="cfg-key">Clave<input id="cfg-key" type="password" required autocomplete="current-password"></label>
+  <button type="submit">Entrar</button>
+</form>
+<div class="app-bar" id="bar" hidden><span id="updated">Cargando…</span><button type="button" id="refresh">Actualizar</button></div>
+<div class="app-err" id="err" hidden></div>
+<div id="dash-root" hidden>
+
+
+<div class="pp">
+  <header class="pp-hero" id="inicio">
+    <div class="pp-top">
+      <div class="pp-brand"><span class="pp-mark"></span>Portfolio personal</div>
+      <span class="pp-chip">Cierre <span data-draw="fecha" data-source="resumen" data-field="fecha" data-row="0" data-fetchpriority="high">—</span></span>
+    </div>
+    <div class="pp-main">
+      <div>
+        <p class="pp-label">Total portfolio · con cash</p>
+        <p class="pp-big"><small>USD</small><span data-draw="k-total" data-source="resumen" data-field="total" data-row="0" data-fetchpriority="high">—</span></p>
+        <p class="pp-lead">En 2026 los activos sin cash ganaron USD <b class="pp-g" data-draw="g-anio-t" data-source="resumen" data-field="ganancia_anio" data-row="0">—</b>, un <b data-draw="g-pct-t" data-source="resumen" data-field="ganancia_pct" data-row="0">—</b> en <b data-draw="meses" data-source="resumen" data-field="meses" data-row="0">—</b> meses: <b data-draw="anual-t" data-source="resumen" data-field="anualizada" data-row="0">—</b> anualizado.</p>
+      </div>
+      <div class="pp-sin">
+        <p class="pp-label">Activos financieros · sin cash</p>
+        <span class="pp-mid">USD <span data-draw="k-sin" data-source="resumen" data-field="sin_cash" data-row="0">—</span></span>
+        <span class="pp-sub">Lo que rinde: bonos, ON, FCI, letras, préstamo y cripto.</span>
+      </div>
+    </div>
+    <div class="pp-tiles" id="indicadores">
+      <div class="pp-tile"><span>Ganancia del mes</span><b data-draw="k-mes" data-source="resumen" data-field="ganancia_mes" data-row="0">—</b></div>
+      <div class="pp-tile"><span>Ganancia 2026 (USD)</span><b data-draw="k-anio" data-source="resumen" data-field="ganancia_anio" data-row="0">—</b></div>
+      <div class="pp-tile"><span>Ganancia 2026 (%)</span><b data-draw="k-pct" data-source="resumen" data-field="ganancia_pct" data-row="0">—</b></div>
+      <div class="pp-tile pp-hl"><span>Anualizada</span><b data-draw="k-anual" data-source="resumen" data-field="anualizada" data-row="0">—</b></div>
+    </div>
+  </header>
+
+  <p class="pp-curso" id="curso"><span><span data-draw="curso-mes" data-source="en_curso" data-field="fecha" data-row="0">—</span>, parcial: total USD <b data-draw="curso-total" data-source="en_curso" data-field="total" data-row="0">—</b>, con USD <b data-draw="curso-cash" data-source="en_curso" data-field="cash" data-row="0">—</b> en cash.</span></p>
+
+  <section class="pp-card" id="composicion">
+    <div class="pp-cardhead">
+      <div>
+        <h2>Composición por rubro</h2>
+        <span class="pp-comp-total"><small>USD</small><span data-draw="comp-total">—</span></span>
+      </div>
+      <select class="dash-select" id="pp-mes" aria-label="Mes" data-draw="mes" data-source="meses"></select>
+    </div>
+    <div class="pp-stack" data-draw="stack" data-source="rubros"></div>
+    <div class="pp-compgrid">
+      <div class="pp-pie" data-draw="pie" data-source="rubros" aria-label="Gráfico de torta por rubro"></div>
+      <div class="pp-rubros" data-draw="comp" data-source="rubros portfolio"></div>
+    </div>
+  </section>
+
+  <div class="pp-cards">
+    <section class="pp-card" id="evolucion">
+      <div>
+        <h2>Evolución mensual</h2>
+        <p class="pp-note">Valor al cierre de cada mes cerrado, en USD.</p>
+      </div>
+      <div class="pp-legend"><span><i class="pp-sw" data-i="0"></i>Total</span><span><i class="pp-sw" data-i="1"></i>Activos sin cash</span></div>
+      <div class="pp-chart" data-draw="evol" data-source="cerrados"></div>
+    </section>
+    <section class="pp-card" id="ganancias">
+      <div>
+        <h2>Ganancia por mes</h2>
+        <p class="pp-note">Variación de los activos sin cash, en USD. Solo meses cerrados.</p>
+      </div>
+      <div class="pp-chart" data-draw="gan" data-source="cerrados"></div>
+    </section>
+  </div>
+
+  <section class="pp-card" id="resultados">
+    <div>
+      <h2>Resultado por activo</h2>
+      <p class="pp-note">Ganancia de cada inversión y cómo se mide.</p>
+    </div>
+    <div class="pp-tablewrap">
+      <table class="pp-table" data-source="resultados" data-row-key="activo">
+        <thead><tr>
+          <th data-field="activo">Activo</th>
+          <th data-field="situacion" class="pp-wide">Situación</th>
+          <th data-field="invertido" class="n pp-wide">Invertido</th>
+          <th data-field="resultado" class="n">Resultado</th>
+          <th data-field="rendimiento" class="n">Rend.</th>
+        </tr></thead>
+        <tbody data-draw="res"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details class="pp-notes" id="notas">
+    <summary>Cómo se calculan los números</summary>
+    <dl>
+      <dt>Origen</dt><dd>Todo sale en vivo del sheet PORTFOLIO PERSONAL: los indicadores, la evolución y los resultados de la pestaña INICIO, y la composición de la pestaña PORTFOLIO.</dd>
+      <dt>Mes cerrado</dt><dd>Los indicadores muestran el último mes cerrado. El mes en curso aparece aparte porque sus valores todavía cambian.</dd>
+      <dt>Sin cash</dt><dd>Activos financieros sin contar el efectivo. La ganancia del mes es la variación de este valor.</dd>
+      <dt>Bonos y ON</dt><dd>Valuados con el flujo futuro descontado a la TIR de compra, con el interés corrido incluido.</dd>
+    </dl>
+  </details>
+
+  <dialog class="pp-dlg" id="detalle" aria-label="Detalle del activo">
+    <div class="pp-dlgbar"><button class="pp-close" type="button" aria-label="Cerrar">×</button></div>
+    <div class="pp-det" data-draw="det" data-source="portfolio variacion on bonos carry cash prestamo resultados"></div>
+  </dialog>
+</div>
+
+
+</div>
+<script>
+(() => {
+  const L = d3.formatLocale({decimal: ',', thousands: '.', grouping: [3], currency: ['US$ ', '']});
+  const MES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const MES3 = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  const f0 = L.format(',.0f');
+  window.pp = {
+    usd: (n) => n == null ? '—' : f0(n),
+    signed: (n) => n == null ? '—' : (n > 0 ? '+' : '') + f0(n),
+    pct: (n, d = 2) => n == null ? '—' : L.format('.' + d + '%')(n),
+    date: (iso) => { if (!iso) return '—'; const [y, m, d] = iso.split('-'); return d + '/' + m + '/' + y; },
+    monthName: (iso) => { if (!iso) return '—'; const [y, m] = iso.split('-'); return MES[+m - 1] + ' ' + y; },
+    mon3: (dt) => MES3[dt.getUTCMonth()],
+    cls: (el, n) => { el.classList.toggle('pp-pos', n > 0); el.classList.toggle('pp-neg', n < 0); },
+    enc: (s) => String(s).replace(/%/g, '%25').replace(/&/g, '%26').replace(/=/g, '%3D'),
+    fail: (el) => { const p = document.createElement('div'); p.className = 'pp-fail'; p.textContent = 'No se pudo cargar'; el.replaceChildren(p); },
+    pal: ['#2F7BEA', '#13A89E', '#8B5CF6', '#E39B1B', '#E2557A', '#2FA35B', '#64748B', '#0EA5E9'],
+    one: (id) => { const d = dash.data(id); return d.status === 'ok' && d.data.length ? d.data[0] : null; },
+    fmt: L
+  };
+})();
+
+dash.loader('resumen', {
+  description: 'Lee los indicadores de INICIO (fila de valores debajo de los títulos) y pasa los números de formato argentino a números.',
+  fn: ({answer}) => {
+    const num = (s) => { if (s == null) return null; let t = String(s).replace(/[$\s+]/g, ''); if (t === '' || t === '-') return null; const p = t.endsWith('%'); t = t.replace('%', '').replace(/\./g, '').replace(',', '.'); const n = Number(t); return isNaN(n) ? null : (p ? n / 100 : n); };
+    const iso = (s) => { const m = String(s || '').match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/); return m ? m[3] + '-' + m[2].padStart(2, '0') + '-' + m[1].padStart(2, '0') : null; };
+    const v = answer.values || [];
+    const lab = v[2] || [], val = v[3] || [];
+    const m = String(lab[8] || '').match(/(\d+)\s*mes/);
+    return [{fecha: iso((v[0] || [])[1]), total: num(val[0]), sin_cash: num(val[2]), ganancia_mes: num(val[4]), ganancia_anio: num(val[6]), ganancia_pct: num(val[8]), anualizada: num(val[10]), meses: m ? Number(m[1]) : null}];
+  }
+});
+
+dash.loader('evolucion', {
+  description: 'Una fila por cierre de mes de la tabla de evolución de INICIO, con los números convertidos.',
+  fn: ({answer}) => {
+    const num = (s) => { if (s == null) return null; let t = String(s).replace(/[$\s+]/g, ''); if (t === '' || t === '-') return null; const p = t.endsWith('%'); t = t.replace('%', '').replace(/\./g, '').replace(',', '.'); const n = Number(t); return isNaN(n) ? null : (p ? n / 100 : n); };
+    const iso = (s) => { const m = String(s || '').match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/); return m ? m[3] + '-' + m[2].padStart(2, '0') + '-' + m[1].padStart(2, '0') : null; };
+    const rows = [];
+    for (const r of answer.values || []) {
+      const fecha = iso(r[0]);
+      if (!fecha || num(r[1]) == null) continue;
+      rows.push({fecha, total: num(r[1]), cash: num(r[2]), sin_cash: num(r[3]), ganancia_mes: num(r[4]), ganancia_acum: num(r[5])});
+    }
+    return {columns: ['fecha', 'total', 'cash', 'sin_cash', 'ganancia_mes', 'ganancia_acum'], rows};
+  }
+});
+
+dash.loader('resultados', {
+  description: 'Una fila por activo de la tabla de resultados de INICIO, con los números convertidos.',
+  fn: ({answer}) => {
+    const num = (s) => { if (s == null) return null; let t = String(s).replace(/[$\s+]/g, ''); if (t === '' || t === '-') return null; const p = t.endsWith('%'); t = t.replace('%', '').replace(/\./g, '').replace(',', '.'); const n = Number(t); return isNaN(n) ? null : (p ? n / 100 : n); };
+    const rows = [];
+    for (const r of answer.values || []) {
+      if (!r[0]) continue;
+      rows.push({activo: r[0], situacion: r[1] || '', invertido: num(r[2]), resultado: num(r[3]), rendimiento: num(r[4]), como_se_mide: r[5] || ''});
+    }
+    return {columns: ['activo', 'situacion', 'invertido', 'resultado', 'rendimiento', 'como_se_mide'], rows};
+  }
+});
+
+dash.loader('portfolio', {
+  description: 'Pasa la grilla de PORTFOLIO (un bloque de tres columnas por mes) a una fila por activo y mes, con el rubro del encabezado de arriba. Corta en la fila TOTAL.',
+  fn: ({answer}) => {
+    const num = (s) => { if (s == null) return null; let t = String(s).replace(/[$\s+]/g, ''); if (t === '' || t === '-') return null; const p = t.endsWith('%'); t = t.replace('%', '').replace(/\./g, '').replace(',', '.'); const n = Number(t); return isNaN(n) ? null : (p ? n / 100 : n); };
+    const iso = (s) => { const m = String(s || '').match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/); return m ? m[3] + '-' + m[2].padStart(2, '0') + '-' + m[1].padStart(2, '0') : null; };
+    const v = answer.values || [];
+    const head = v[0] || [];
+    const blocks = [];
+    for (let c = 1; c < head.length; c += 3) { const f = iso(head[c]); if (f) blocks.push({c, f, tc: num(head[c + 2])}); }
+    const rows = [];
+    let rubro = null;
+    for (let r = 2; r < v.length; r++) {
+      const row = v[r] || [];
+      const name = String(row[0] || '').trim();
+      if (!name) continue;
+      if (name.toUpperCase() === 'TOTAL') break;
+      if (blocks.every((b) => String(row[b.c + 2] ?? '').trim() === '')) { rubro = name; continue; }
+      for (const b of blocks) rows.push({fecha: b.f, rubro, activo: name, usd: num(row[b.c + 2]), ars: num(row[b.c + 1]), pct: num(row[b.c]), tc: b.tc});
+    }
+    return {columns: ['fecha', 'rubro', 'activo', 'usd', 'ars', 'pct', 'tc'], rows};
+  }
+});
+
+dash.calc('rubros', {
+  inputs: ['portfolio'],
+  title: 'Rubros por mes',
+  description: 'Suma en USD de los activos de cada rubro, y su peso sobre el total de ese mes.',
+  fn: (portfolio) => {
+    const tot = new Map(), sum = new Map(), order = [];
+    for (const r of portfolio) {
+      const k = r.fecha + '|' + r.rubro;
+      if (!sum.has(k)) { sum.set(k, 0); order.push([r.fecha, r.rubro, k]); }
+      sum.set(k, sum.get(k) + (r.usd || 0));
+      tot.set(r.fecha, (tot.get(r.fecha) || 0) + (r.usd || 0));
+    }
+    return order.map(([fecha, rubro, k]) => ({fecha, rubro, usd: sum.get(k), pct: tot.get(fecha) ? sum.get(k) / tot.get(fecha) : null}));
+  }
+});
+
+dash.calc('meses', {
+  inputs: ['portfolio', 'resumen'],
+  title: 'Total por mes',
+  description: 'Total en USD de cada mes de PORTFOLIO; cerrado si es hasta la fecha del panel, en curso si es posterior.',
+  fn: (portfolio, resumen) => {
+    const corte = resumen[0] && resumen[0].fecha;
+    const tot = new Map();
+    for (const r of portfolio) tot.set(r.fecha, (tot.get(r.fecha) || 0) + (r.usd || 0));
+    return [...tot].filter(([, t]) => t > 0).map(([fecha, total]) => ({fecha, total, estado: corte && fecha > corte ? 'en curso' : 'cerrado'}));
+  }
+});
+
+dash.calc('cerrados', {
+  inputs: ['evolucion', 'resumen'],
+  title: 'Meses cerrados',
+  description: 'Los meses de la evolución hasta la fecha del panel.',
+  fn: (evolucion, resumen) => {
+    const corte = resumen[0] && resumen[0].fecha;
+    return evolucion.filter((r) => !corte || r.fecha <= corte);
+  }
+});
+
+dash.calc('en_curso', {
+  inputs: ['evolucion', 'resumen'],
+  title: 'Mes en curso',
+  description: 'El primer mes de la evolución posterior a la fecha del panel.',
+  fn: (evolucion, resumen) => {
+    const corte = resumen[0] && resumen[0].fecha;
+    const r = evolucion.find((x) => corte && x.fecha > corte);
+    return r ? [r] : [];
+  }
+});
+
+const PP_FLUJO = ({answer}) => {
+    const num = (s) => { if (s == null) return null; let t = String(s).replace(/[$\s+()]/g, ''); if (t === '' || t === '-') return null; const p = t.endsWith('%'); t = t.replace('%', '').replace(/\./g, '').replace(',', '.'); const n = Number(t); return isNaN(n) ? null : (p ? n / 100 : n); };
+    const iso = (s) => { const m = String(s || '').match(/^\s*(\d{1,2})\/(\d{1,2})\/(\d{4})\s*$/); return m ? m[3] + '-' + m[2].padStart(2, '0') + '-' + m[1].padStart(2, '0') : null; };
+    const norm = (s) => String(s ?? '').trim().toUpperCase();
+    const out = [];
+    let mode = null, cols = null, tk = null, title = null;
+    for (const row of answer.values || []) {
+      const a = String(row[0] ?? '').trim();
+      if (!row.length || row.every((c) => String(c).trim() === '')) { if (mode === 'compras') mode = null; continue; }
+      if (/^FLUJO DE FONDOS/i.test(a)) { title = a.split('·').slice(1).join('·').trim(); tk = title.split(/[\s(·]/)[0]; mode = null; continue; }
+      if (/^VALUACI/.test(norm(a))) { mode = null; tk = null; continue; }
+      if (norm(a) === 'FECHA') { cols = row.map(norm); mode = cols.includes('TICKER') ? 'compras' : (tk ? 'flujo' : null); continue; }
+      const ix = (...names) => { for (const n of names) { const i = cols ? cols.findIndex((c) => c.startsWith(n)) : -1; if (i >= 0) return i; } return -1; };
+      const g = (i) => (i >= 0 ? row[i] : undefined);
+      if (mode === 'compras' && iso(a)) {
+        out.push({tipo: 'compra', ticker: String(g(ix('TICKER')) ?? '').trim(), fecha: iso(a), empresa: String(g(ix('EMPRESA')) ?? '').trim(), invertido: num(g(ix('TOTAL (USD)'))), mep: num(g(ix('VENTA MEP'))), cupon: num(g(ix('CUPON'))), tir: num(g(ix('TIR'))), vencimiento: iso(g(ix('VENCIMIENTO'))), proximo: iso(g(ix('PROXIMO')))});
+        continue;
+      }
+      if (mode === 'flujo' && tk) {
+        if (iso(a)) {
+          out.push({tipo: 'flujo', ticker: tk, titulo: title, fecha: iso(a), estado: String(g(ix('ESTADO', 'CONCEPTO')) ?? '').trim(), interes: num(g(ix('INTER'))), amortizacion: num(g(ix('AMORTIZ'))), cobro: num(g(ix('COBRO TOTAL', 'IMPORTE (USD)'))), nominal: num(g(ix('NOMINAL FIN', 'NOMINALES'))), nota: String(g(ix('COMPROBANTE')) ?? '').trim()});
+          continue;
+        }
+        if (norm(a) === 'TOTAL' || a.length > 60) continue;
+        const val = row.slice(1).find((c) => String(c).trim() !== '');
+        if (val != null && num(val) != null) out.push({tipo: 'dato', ticker: tk, titulo: title, concepto: a, valor: num(val), es_pct: String(val).includes('%')});
+      }
+    }
+    return {columns: ['tipo', 'ticker', 'titulo', 'fecha', 'estado', 'interes', 'amortizacion', 'cobro', 'nominal', 'nota', 'concepto', 'valor', 'es_pct', 'empresa', 'invertido', 'mep', 'cupon', 'tir', 'vencimiento', 'proximo'], rows: out};
+  };
+dash.loader('on', {description: 'Lee la tabla de compras y cada tabla de flujo de fondos de la pestaña ON: una fila por compra, por pago y por dato del resumen (TIR, ganancia).', fn: PP_FLUJO});
+dash.loader('bonos', {description: 'Lee la tabla de compras y cada tabla de flujo de fondos de la pestaña BONOS: una fila por compra, por pago y por dato del resumen.', fn: PP_FLUJO});
+dash.loader('carry', {description: 'Lee el flujo de fondos de la letra en la pestaña CARRY TRADE: una fila por movimiento y por dato del resumen.', fn: PP_FLUJO});
+
+dash.loader('cash', {
+  description: 'Una fila por lugar y mes de la pestaña CASH, hasta la fila TOTAL.',
+  fn: ({answer}) => {
+    const num = (s) => { if (s == null) return null; let t = String(s).replace(/[$\s+]/g, ''); if (t === '' || t === '-') return null; t = t.replace(/\./g, '').replace(',', '.'); const n = Number(t); return isNaN(n) ? null : n; };
+    const iso = (s) => { const m = String(s || '').match(/^\s*(\d{1,2})\/(\d{1,2})\/(\d{4})\s*$/); return m ? m[3] + '-' + m[2].padStart(2, '0') + '-' + m[1].padStart(2, '0') : null; };
+    let dates = null; const rows = [];
+    for (const row of answer.values || []) {
+      if (!dates && row.some((c) => iso(c))) { dates = row.map((c) => iso(c)); continue; }
+      const lab = String(row[1] ?? '').trim();
+      if (!dates || !lab || lab.toUpperCase() === 'LUGAR') continue;
+      if (lab.toUpperCase() === 'TOTAL') break;
+      row.forEach((c, i) => { if (dates[i] && String(c).trim() !== '') rows.push({fecha: dates[i], lugar: lab, usd: num(c)}); });
+    }
+    return {columns: ['fecha', 'lugar', 'usd'], rows};
+  }
+});
+
+dash.loader('prestamo', {
+  description: 'Saldo del préstamo en cada fecha y su tasa, de la pestaña PRESTAMO (cada fila de fechas con la fila de saldos de abajo).',
+  fn: ({answer}) => {
+    const num = (s) => { if (s == null) return null; let t = String(s).replace(/[$\s+]/g, ''); if (t === '' || t === '-') return null; const p = t.endsWith('%'); t = t.replace('%', '').replace(/\./g, '').replace(',', '.'); const n = Number(t); return isNaN(n) ? null : (p ? n / 100 : n); };
+    const iso = (s) => { const m = String(s || '').match(/^\s*(\d{1,2})\/(\d{1,2})\/(\d{4})\s*$/); return m ? m[3] + '-' + m[2].padStart(2, '0') + '-' + m[1].padStart(2, '0') : null; };
+    const rows = []; let pend = null, tasa = null;
+    for (const row of answer.values || []) {
+      const ds = row.map((c) => iso(c));
+      const pc = row.find((c) => String(c).includes('%'));
+      if (ds.filter(Boolean).length >= 2) { pend = ds; if (pc) tasa = num(pc); continue; }
+      if (!pend) continue;
+      if (pc) tasa = num(pc);
+      row.forEach((c, i) => { if (pend[i] && !String(c).includes('%') && num(c) != null) rows.push({fecha: pend[i], prestamo: String(row[0] || 'Préstamo').trim(), saldo: num(c), tasa}); });
+      pend = null;
+    }
+    return {columns: ['fecha', 'prestamo', 'saldo', 'tasa'], rows};
+  }
+});
+
+dash.calc('variacion', {
+  inputs: ['portfolio'],
+  title: 'Variación por activo',
+  description: 'Para cada activo y mes: el cambio en USD contra el mes anterior y contra el 31/12/2025.',
+  fn: (portfolio) => {
+    const prev = new Map(), first = new Map(), out = [];
+    for (const r of portfolio) {
+      if (!first.has(r.activo)) first.set(r.activo, r.usd || 0);
+      const p = prev.get(r.activo);
+      out.push({fecha: r.fecha, activo: r.activo, usd: r.usd || 0, var_mes: p == null ? null : (r.usd || 0) - p, var_inicio: (r.usd || 0) - first.get(r.activo)});
+      prev.set(r.activo, r.usd || 0);
+    }
+    return out;
+  }
+});
+
+</script>
+
+<script>
+(() => {
+  const P = window.pp;
+  const txt = (name, id, field, fmt, color) => dash.draw(name, (el) => {
+    const r = P.one(id);
+    if (!r) { el.textContent = '—'; return; }
+    el.textContent = fmt(r[field]);
+    if (color) P.cls(el, r[field]);
+  });
+  txt('fecha', 'resumen', 'fecha', P.date);
+  txt('k-total', 'resumen', 'total', P.usd);
+  txt('k-sin', 'resumen', 'sin_cash', P.usd);
+  txt('k-mes', 'resumen', 'ganancia_mes', P.signed, true);
+  txt('k-anio', 'resumen', 'ganancia_anio', P.signed, true);
+  txt('k-pct', 'resumen', 'ganancia_pct', (n) => P.pct(n), true);
+  txt('k-anual', 'resumen', 'anualizada', (n) => P.pct(n), true);
+  txt('g-anio-t', 'resumen', 'ganancia_anio', P.usd);
+  txt('g-pct-t', 'resumen', 'ganancia_pct', (n) => P.pct(n));
+  txt('meses', 'resumen', 'meses', (n) => n == null ? '—' : String(n));
+  txt('anual-t', 'resumen', 'anualizada', (n) => P.pct(n));
+  txt('curso-mes', 'en_curso', 'fecha', P.monthName);
+  txt('curso-total', 'en_curso', 'total', P.usd);
+  txt('curso-cash', 'en_curso', 'cash', P.usd);
+
+  dash.onData(() => {
+    const c = dash.data('en_curso');
+    document.querySelectorAll('#curso').forEach((el) => { el.hidden = c.status === 'ok' && c.data.length === 0; });
+    document.querySelectorAll('.pp-sw').forEach((el) => { el.style.background = ['#2F7BEA', '#D4A64A'][+el.dataset.i]; });
+  });
+
+  const selected = () => {
+    const m = dash.data('meses');
+    if (m.status !== 'ok' || !m.data.length) return null;
+    const p = dash.params().mes;
+    return m.data.some((r) => r.fecha === p) ? p : m.data[m.data.length - 1].fecha;
+  };
+
+  dash.draw('mes', (sel) => {
+    const m = dash.data('meses');
+    const rows = m.status === 'ok' ? m.data : [];
+    sel.replaceChildren(...rows.slice().reverse().map((r) => new Option(P.monthName(r.fecha) + (r.estado === 'en curso' ? ' (en curso)' : ''), r.fecha)));
+    const s = selected();
+    if (s) sel.value = s;
+    sel.onchange = () => dash.setParams({mes: sel.value});
+  });
+
+  dash.draw('comp-total', (el) => {
+    const s = selected();
+    const m = dash.data('meses');
+    const r = s && m.data.find((x) => x.fecha === s);
+    el.replaceChildren();
+    if (!r) { el.textContent = '—'; return; }
+    const b = document.createElement('span');
+    b.dataset.source = 'meses'; b.dataset.field = 'total'; b.dataset.where = 'fecha=' + P.enc(s);
+    b.textContent = P.usd(r.total);
+    el.append(b);
+  });
+
+  const rubroRows = () => {
+    const s = selected();
+    const d = dash.data('rubros');
+    if (!s || d.status !== 'ok') return null;
+    return {s, rows: d.data.filter((r) => r.fecha === s && r.usd > 0)};
+  };
+  const colorOf = (rubro) => {
+    const d = dash.data('rubros');
+    const names = [...new Set((d.data || []).map((r) => r.rubro))];
+    return P.pal[names.indexOf(rubro) % P.pal.length];
+  };
+
+  dash.draw('stack', (el) => {
+    const x = rubroRows();
+    el.replaceChildren();
+    if (!x) return;
+    for (const r of x.rows) {
+      const seg = document.createElement('div');
+      seg.style.flex = String(r.pct);
+      seg.style.background = colorOf(r.rubro);
+      seg.dataset.source = 'rubros'; seg.dataset.field = 'pct'; seg.dataset.where = 'fecha=' + P.enc(x.s) + '&rubro=' + P.enc(r.rubro);
+      el.append(seg);
+    }
+  });
+
+  dash.draw('pie', (el) => {
+    const x = rubroRows();
+    el.replaceChildren();
+    if (!x || !x.rows.length) { if (dash.data('rubros').status === 'error') P.fail(el); return; }
+    const S = Math.min(300, el.clientWidth || 300), R = S / 2;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${S} ${S}`);
+    const g = svg.append('g').attr('transform', `translate(${R},${R})`);
+    const arcs = d3.pie().sort(null).value((r) => r.usd).padAngle(0.018)(x.rows);
+    const arc = d3.arc().innerRadius(R * 0.62).outerRadius(R - 6).cornerRadius(5);
+    const big = d3.arc().innerRadius(R * 0.62).outerRadius(R).cornerRadius(5);
+    const center = document.createElement('div'); center.className = 'pp-pie-c';
+    const cl = document.createElement('span'); cl.className = 'l';
+    const cv = document.createElement('span'); cv.className = 'v';
+    const cs = document.createElement('span'); cs.className = 's';
+    center.append(cl, cv, cs); el.append(center);
+    const tot = d3.sum(x.rows, (r) => r.usd);
+    const reset = () => { cl.textContent = 'Total USD'; cv.textContent = P.usd(tot); cs.textContent = x.rows.length + ' rubros'; };
+    reset();
+    const paths = g.selectAll('path').data(arcs).join('path').attr('d', arc)
+      .style('fill', (a) => colorOf(a.data.rubro)).style('stroke', 'var(--color-panel)').attr('stroke-width', 2)
+      .attr('data-source', 'rubros').attr('data-field', 'pct')
+      .attr('data-where', (a) => 'fecha=' + P.enc(x.s) + '&rubro=' + P.enc(a.data.rubro))
+      .style('cursor', 'pointer')
+      .on('pointerenter pointerdown', function (ev, a) {
+        paths.attr('d', arc).style('opacity', .45);
+        d3.select(this).attr('d', big).style('opacity', 1);
+        cl.textContent = a.data.rubro; cv.textContent = P.pct(a.data.pct, 1); cs.textContent = 'USD ' + P.usd(a.data.usd);
+      })
+      .on('pointerleave', () => { paths.attr('d', arc).style('opacity', 1); reset(); });
+    arcs.forEach((a) => {
+      if (a.endAngle - a.startAngle < 0.32) return;
+      const [cx, cy] = arc.centroid(a);
+      g.append('text').attr('x', cx).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'middle')
+        .attr('font-size', 11.5).attr('font-weight', 700).style('fill', '#fff').style('pointer-events', 'none')
+        .text(P.pct(a.data.pct, 0));
+    });
+  });
+
+  dash.draw('comp', (el) => {
+    const x = rubroRows();
+    el.replaceChildren();
+    if (!x) { if (dash.data('rubros').status === 'error' || dash.data('portfolio').status === 'error') P.fail(el); return; }
+    const items = dash.data('portfolio').data.filter((r) => r.fecha === x.s && r.usd && Math.abs(r.usd) >= 0.5);
+    const cell = (tag, cls, text, mark) => { const e = document.createElement(tag); if (cls) e.className = cls; e.textContent = text; if (mark) Object.assign(e.dataset, mark); return e; };
+    for (const r of x.rows) {
+      const box = cell('div', 'pp-rubro', '');
+      box.style.setProperty('--c', colorOf(r.rubro));
+      const line = cell('div', 'pp-rline', '');
+      const w = 'fecha=' + P.enc(x.s) + '&rubro=' + P.enc(r.rubro);
+      const usd = cell('div', 'pp-rusd', '');
+      usd.append(cell('small', '', 'USD'), cell('span', '', P.usd(r.usd), {source: 'rubros', field: 'usd', where: w}));
+      line.append(cell('span', 'pp-rname', r.rubro), cell('span', 'pp-rpct', P.pct(r.pct, 1), {source: 'rubros', field: 'pct', where: w}), usd);
+      box.append(line);
+      const its = items.filter((i) => i.rubro === r.rubro);
+      if (its.length) {
+        const list = cell('div', 'pp-items', '');
+        for (const it of its) {
+          const row = cell('div', 'pp-item', '');
+          const wi = 'fecha=' + P.enc(x.s) + '&activo=' + P.enc(it.activo);
+          const bar = cell('div', 'pp-bar', ''); const fill = cell('i', '', ''); fill.style.width = Math.min(100, Math.max(1, (it.usd / r.usd) * 100)) + '%'; bar.append(fill);
+          row.tabIndex = 0; row.setAttribute('role', 'button');
+          row.onclick = () => window.ppOpen(it.activo);
+          row.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.ppOpen(it.activo); } };
+          row.append(cell('span', '', it.activo, {source: 'portfolio', field: 'activo', where: wi}),
+            cell('span', 'pp-v', P.usd(it.usd), {source: 'portfolio', field: 'usd', where: wi}),
+            cell('span', 'pp-m', P.pct(it.pct, 1), {source: 'portfolio', field: 'pct', where: wi}), bar);
+          list.append(row);
+        }
+        box.append(list);
+      }
+      el.append(box);
+    }
+  });
+
+  const tipBox = (el) => { const t = document.createElement('div'); t.className = 'pp-tip'; t.hidden = true; el.append(t); return t; };
+  const placeTip = (el, tip, px, py) => {
+    tip.hidden = false;
+    const w = tip.offsetWidth, h = tip.offsetHeight, W = el.clientWidth;
+    let left = px + 12; if (left + w > W) left = px - w - 12; if (left < 0) left = 0;
+    tip.style.left = left + 'px'; tip.style.top = Math.max(0, py - h - 8) + 'px';
+  };
+  const tipLine = (tip, color, label, value) => {
+    const l = document.createElement('div');
+    if (color) { const i = document.createElement('i'); i.style.background = color; l.append(i); }
+    l.append(label + ': ' + value); tip.append(l);
+  };
+  const measure = (svg, strings) => {
+    const t = svg.append('text').attr('font-size', 'var(--cds-font-size-caption)').style('font-size', '12px');
+    let m = 0; for (const s of strings) { t.text(s); m = Math.max(m, t.node().getComputedTextLength()); }
+    t.remove(); return m;
+  };
+
+  dash.draw('evol', (el) => {
+    const d = dash.data('cerrados');
+    el.replaceChildren();
+    if (d.status !== 'ok') { if (d.status === 'error') P.fail(el); return; }
+    const rows = d.data.map((r) => ({...r, dt: new Date(r.fecha + 'T00:00:00Z')}));
+    if (rows.length < 2) return;
+    const W = el.clientWidth || 600, H = 240;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const y = d3.scaleLinear([d3.min(rows, (r) => r.sin_cash) * 0.96, d3.max(rows, (r) => r.total) * 1.02], [H - 24, 8]).nice();
+    const ticks = y.ticks(5);
+    const ml = measure(svg, ticks.map((t) => P.usd(t))) + 10;
+    const x = d3.scaleUtc(d3.extent(rows, (r) => r.dt), [ml, W - 10]);
+    const g = svg.append('g').attr('font-size', 12).style('fill', 'var(--color-fg-muted)');
+    for (const t of ticks) {
+      svg.append('line').attr('x1', ml).attr('x2', W - 10).attr('y1', y(t)).attr('y2', y(t)).style('stroke', 'var(--cds-chart-grid)');
+      g.append('text').attr('x', ml - 8).attr('y', y(t)).attr('dy', '0.32em').attr('text-anchor', 'end').text(P.usd(t));
+    }
+    const step = W < 480 ? 2 : 1;
+    rows.forEach((r, i) => { if (i % step === 0 || i === rows.length - 1) g.append('text').attr('x', x(r.dt)).attr('y', H - 6).attr('text-anchor', 'middle').text(P.mon3(r.dt)); });
+    const series = [['total', 'Total'], ['sin_cash', 'Activos sin cash']];
+    const SC = ['#2F7BEA', '#D4A64A'];
+    const gid = 'ppg' + Math.random().toString(36).slice(2, 7);
+    const gr = svg.append('defs').append('linearGradient').attr('id', gid).attr('x1', 0).attr('x2', 0).attr('y1', 0).attr('y2', 1);
+    [[0, .32], [.5, .1], [1, 0]].forEach(([o, a]) => gr.append('stop').attr('offset', o).style('stop-color', SC[0]).style('stop-opacity', a));
+    svg.append('path').datum(rows).attr('d', d3.area((r) => x(r.dt), y.range()[0], (r) => y(r.total))).style('fill', `url(#${gid})`);
+    series.forEach(([k], i) => {
+      svg.append('path').datum(rows).attr('d', d3.line((r) => x(r.dt), (r) => y(r[k])))
+        .style('fill', 'none').style('stroke', SC[i]).attr('stroke-width', 2.5).attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round');
+      const last = rows[rows.length - 1];
+      svg.append('circle').attr('cx', x(last.dt)).attr('cy', y(last[k])).attr('r', 3.5).style('fill', SC[i]);
+    });
+    const rule = svg.append('line').attr('y1', 8).attr('y2', H - 24).style('stroke', 'var(--cds-chart-reference)').style('display', 'none');
+    const dots = series.map((s, i) => svg.append('circle').attr('r', 4).style('fill', SC[i]).style('display', 'none'));
+    const tip = tipBox(el);
+    const show = (ev) => {
+      const [mx] = d3.pointer(ev, svg.node());
+      const sx = mx * (W / svg.node().getBoundingClientRect().width);
+      const dt = x.invert(sx);
+      const i = d3.minIndex(rows, (r) => Math.abs(r.dt - dt));
+      const r = rows[i], px = x(r.dt);
+      rule.attr('x1', px).attr('x2', px).style('display', null);
+      series.forEach(([k], j) => dots[j].attr('cx', px).attr('cy', y(r[k])).style('display', null));
+      tip.replaceChildren();
+      const dd = document.createElement('div'); dd.className = 'd'; dd.textContent = P.date(r.fecha); tip.append(dd);
+      series.forEach(([k, lab], j) => tipLine(tip, SC[j], lab, 'USD ' + P.usd(r[k])));
+      if (r.ganancia_mes != null) tipLine(tip, null, 'Ganancia del mes', P.signed(r.ganancia_mes));
+      const scale = svg.node().getBoundingClientRect().width / W;
+      placeTip(el, tip, px * scale, y(r.total) * scale);
+    };
+    svg.append('rect').attr('x', ml).attr('y', 0).attr('width', W - ml).attr('height', H).style('fill', 'transparent')
+      .on('pointermove pointerdown', show)
+      .on('pointerleave', () => { tip.hidden = true; rule.style('display', 'none'); dots.forEach((c) => c.style('display', 'none')); });
+  });
+
+  dash.draw('gan', (el) => {
+    const d = dash.data('cerrados');
+    el.replaceChildren();
+    if (d.status !== 'ok') { if (d.status === 'error') P.fail(el); return; }
+    const rows = d.data.filter((r) => r.ganancia_mes != null).map((r) => ({...r, dt: new Date(r.fecha + 'T00:00:00Z')}));
+    if (!rows.length) return;
+    const W = el.clientWidth || 600, H = 240;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const lo = Math.min(0, d3.min(rows, (r) => r.ganancia_mes)), hi = Math.max(0, d3.max(rows, (r) => r.ganancia_mes));
+    const y = d3.scaleLinear([lo, hi * 1.12], [H - 24, 18]).nice();
+    const ticks = y.ticks(4);
+    const ml = measure(svg, ticks.map((t) => P.usd(t))) + 10;
+    const x = d3.scaleBand(rows.map((r) => r.fecha), [ml, W - 6]).padding(0.28);
+    const g = svg.append('g').attr('font-size', 12).style('fill', 'var(--color-fg-muted)');
+    for (const t of ticks) {
+      svg.append('line').attr('x1', ml).attr('x2', W - 6).attr('y1', y(t)).attr('y2', y(t)).style('stroke', t === 0 ? 'var(--cds-chart-axis)' : 'var(--cds-chart-grid)');
+      g.append('text').attr('x', ml - 8).attr('y', y(t)).attr('dy', '0.32em').attr('text-anchor', 'end').text(P.usd(t));
+    }
+    const bw = Math.min(32, x.bandwidth());
+    const tip = tipBox(el);
+    rows.forEach((r) => {
+      const cx = x(r.fecha) + x.bandwidth() / 2;
+      const y0 = y(0), y1 = y(r.ganancia_mes);
+      svg.append('rect').attr('x', cx - bw / 2).attr('width', bw).attr('y', Math.min(y0, y1)).attr('height', Math.max(1, Math.abs(y1 - y0))).attr('rx', 5)
+        .style('fill', r.ganancia_mes >= 0 ? '#1F9D6B' : '#D9485F')
+        .on('pointerenter pointerdown', () => {
+          tip.replaceChildren();
+          const dd = document.createElement('div'); dd.className = 'd'; dd.textContent = P.monthName(r.fecha); tip.append(dd);
+          tipLine(tip, null, 'Ganancia', 'USD ' + P.signed(r.ganancia_mes));
+          tipLine(tip, null, 'Acumulada 2026', 'USD ' + P.signed(r.ganancia_acum));
+          const s = svg.node().getBoundingClientRect().width / W;
+          placeTip(el, tip, cx * s, Math.min(y0, y1) * s);
+        })
+        .on('pointerleave', () => { tip.hidden = true; });
+      g.append('text').attr('x', cx).attr('y', H - 6).attr('text-anchor', 'middle').text(P.mon3(r.dt));
+      if (x.bandwidth() >= 34) g.append('text').attr('x', cx).attr('y', (r.ganancia_mes >= 0 ? y1 - 5 : y1 + 13)).attr('text-anchor', 'middle').style('fill', 'var(--color-fg)').text(P.usd(r.ganancia_mes));
+    });
+  });
+
+  dash.draw('res', (tb) => {
+    const d = dash.data('resultados');
+    tb.replaceChildren();
+    if (d.status !== 'ok') return;
+    for (const r of d.data) {
+      const tr = document.createElement('tr');
+      const td = (text, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; c.textContent = text; tr.append(c); return c; };
+      td(r.activo);
+      td(r.situacion, 'm pp-wide');
+      td(r.invertido == null ? '—' : P.usd(r.invertido), 'n pp-wide');
+      const rc = td(P.signed(r.resultado), 'n'); P.cls(rc, r.resultado);
+      const rd = td('', 'n r'); if (r.rendimiento == null) rd.textContent = '—'; else { const s = document.createElement('span'); s.textContent = P.pct(r.rendimiento); rd.append(s); }
+      tr.onclick = () => { const a = window.ppMatch(r.activo); if (a) window.ppOpen(a); };
+      tb.append(tr);
+    }
+  });
+
+  const key = (s) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().replace(/O/g, '0');
+  window.ppMatch = (label) => {
+    const pf = dash.data('portfolio');
+    if (pf.status !== 'ok') return null;
+    const tok = key(String(label).split(/[\s·]/)[0]);
+    const names = [...new Set(pf.data.map((r) => r.activo))];
+    return names.find((n) => key(n).includes(tok)) || null;
+  };
+  // Deja fija la pantalla de atrás mientras el detalle está abierto (también en iPhone).
+  let savedY = 0;
+  const lockScroll = () => {
+    savedY = window.scrollY;
+    document.querySelectorAll('html').forEach((h) => { h.style.overflow = 'hidden'; });
+    document.querySelectorAll('body').forEach((b) => { b.style.position = 'fixed'; b.style.top = -savedY + 'px'; b.style.left = '0'; b.style.right = '0'; b.style.overflow = 'hidden'; });
+  };
+  const unlockScroll = () => {
+    document.querySelectorAll('html').forEach((h) => { h.style.overflow = ''; });
+    document.querySelectorAll('body').forEach((b) => { b.style.position = ''; b.style.top = ''; b.style.left = ''; b.style.right = ''; b.style.overflow = ''; });
+    window.scrollTo(0, savedY);
+  };
+  window.ppOpen = (activo) => {
+    window.ppSel = activo;
+    window.ppSelMes = null;
+    dash.draw('det');
+    document.querySelectorAll('#detalle').forEach((d) => { if (!d.open) { lockScroll(); try { d.showModal(); } catch (e) { d.setAttribute('open', ''); } } d.scrollTop = 0; });
+  };
+  document.querySelectorAll('#detalle').forEach((d) => {
+    d.addEventListener('close', unlockScroll);
+    d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+    d.querySelectorAll('.pp-close').forEach((b) => b.addEventListener('click', () => d.close()));
+  });
+
+  dash.draw('det', (el) => {
+    el.replaceChildren();
+    const a = window.ppSel;
+    const pf = dash.data('portfolio');
+    if (!a || pf.status !== 'ok') return;
+    const s = window.ppSelMes || selected();
+    const rowsA = pf.data.filter((r) => r.activo === a);
+    const cur = rowsA.find((r) => r.fecha === s) || rowsA[rowsA.length - 1];
+    if (!cur) return;
+    const ka = key(a);
+    const mk = (tag, cls, text, mark) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; if (mark) Object.assign(e.dataset, mark); return e; };
+    const wA = (f) => 'fecha=' + P.enc(f) + '&activo=' + P.enc(a);
+    el.style.setProperty('--c', colorOf(cur.rubro));
+
+    // Cabecera
+    const hero = mk('div', 'pp-dhero');
+    const chips = mk('div', 'pp-dchips');
+    chips.append(mk('span', 'pp-dchip c', cur.rubro, {source: 'portfolio', field: 'rubro', where: wA(cur.fecha)}), mk('span', 'pp-dchip', P.monthName(cur.fecha)));
+    const val = mk('div', 'pp-dval'); val.append(mk('small', '', 'USD'), mk('span', '', P.usd(cur.usd), {source: 'portfolio', field: 'usd', where: wA(cur.fecha)}));
+    const sub = mk('div', 'pp-dsub');
+    sub.append(mk('span', '', P.pct(cur.pct, 1), {source: 'portfolio', field: 'pct', where: wA(cur.fecha)}), ' del portfolio');
+    const vr = (dash.data('variacion').data || []).find((r) => r.activo === a && r.fecha === cur.fecha);
+    if (vr && vr.var_mes != null) {
+      const b = mk('b', '', P.signed(vr.var_mes), {source: 'variacion', field: 'var_mes', where: wA(cur.fecha)}); P.cls(b, vr.var_mes);
+      sub.append(' · ', b, ' vs. mes anterior');
+    }
+    hero.append(chips, mk('h3', '', a, {source: 'portfolio', field: 'activo', where: wA(cur.fecha)}), val, sub);
+    el.append(hero);
+
+    const sec = (title) => { const x = mk('section', 'pp-sec'); x.append(mk('h4', '', title)); el.append(x); return x; };
+    const kvs = (parent, items) => { const g = mk('div', 'pp-kv'); for (const [l, v, m] of items) { if (v == null || v === '—') continue; const d = mk('div'); d.append(mk('span', '', l), mk('b', '', v, m)); g.append(d); } if (g.children.length) parent.append(g); return g; };
+
+    // Evolución mensual del activo
+    const hist = rowsA.filter((r) => r.usd);
+    if (hist.length) {
+      const x = sec('Valor al cierre de cada mes · tocá una barra para ver ese mes');
+      const mini = mk('div', 'pp-mini', null, {source: 'portfolio'});
+      const max = d3.max(hist, (r) => Math.abs(r.usd)) || 1;
+      for (const r of hist) {
+        const c = mk('button', r.fecha === cur.fecha ? 'on' : '');
+        c.type = 'button';
+        c.setAttribute('aria-label', 'Ver ' + P.monthName(r.fecha));
+        c.onclick = () => { window.ppSelMes = r.fecha; dash.draw('det'); };
+        const bar = mk('i'); bar.style.height = Math.max(3, (Math.abs(r.usd) / max) * 72) + 'px';
+        c.append(bar, mk('small', '', P.mon3(new Date(r.fecha + 'T00:00:00Z'))));
+        mini.append(c);
+      }
+      x.append(mini);
+      if (vr) kvs(x, [['Variación desde 31/12/2025', P.signed(vr.var_inicio), {source: 'variacion', field: 'var_inicio', where: wA(cur.fecha)}], ['En pesos', cur.ars == null ? null : '$ ' + P.usd(cur.ars), {source: 'portfolio', field: 'ars', where: wA(cur.fecha)}]]);
+    }
+
+    // Instrumento: compras, datos y flujos de ON, BONOS y CARRY TRADE
+    const det = ['on', 'bonos', 'carry'].flatMap((id) => { const d = dash.data(id); return d.status === 'ok' ? d.data.map((r) => ({...r, _src: id})) : []; })
+      .filter((r) => r.ticker && key(r.ticker).length >= 4 && ka.includes(key(r.ticker)));
+    const wT = (r) => 'tipo=' + P.enc(r.tipo) + '&ticker=' + P.enc(r.ticker) + (r.fecha ? '&fecha=' + P.enc(r.fecha) : '') + (r.concepto ? '&concepto=' + P.enc(r.concepto) : '');
+    const compra = det.find((r) => r.tipo === 'compra');
+    const flujos = det.filter((r) => r.tipo === 'flujo');
+    const datos = det.filter((r) => r.tipo === 'dato');
+    const titulo = (flujos[0] || datos[0] || {}).titulo;
+    if (compra || titulo) {
+      const x = sec('El instrumento');
+      if (titulo) x.append(mk('p', 'pp-more', titulo));
+      if (compra) {
+        const m = (f) => ({source: compra._src, field: f, where: wT(compra)});
+        kvs(x, [
+          ['Fecha de compra', P.date(compra.fecha), m('fecha')],
+          ['Invertido (USD)', compra.invertido == null ? null : P.usd(compra.invertido), m('invertido')],
+          ['Cupón anual', compra.cupon == null ? null : P.pct(compra.cupon), m('cupon')],
+          ['TIR de compra', compra.tir == null ? null : P.pct(compra.tir), m('tir')],
+          ['Vencimiento', compra.vencimiento ? P.date(compra.vencimiento) : null, m('vencimiento')],
+          ['Próximo pago', compra.proximo ? P.date(compra.proximo) : null, m('proximo')],
+          ['Dólar MEP de compra', compra.mep == null ? null : '$ ' + P.usd(compra.mep), m('mep')]
+        ]);
+      }
+    }
+    if (datos.length) {
+      const x = sec('Rendimiento a vencimiento');
+      kvs(x, datos.map((r) => [r.concepto, /d[ií]as/i.test(r.concepto) ? String(r.valor) : (r.es_pct ? P.pct(r.valor) : P.usd(r.valor)), {source: r._src, field: 'valor', where: wT(r)}]));
+    }
+    const res = (dash.data('resultados').data || []).find((r) => ka.includes(key(String(r.activo).split(/[\s·]/)[0])));
+    if (res) {
+      const x = sec('Resultado');
+      const m = (f) => ({source: 'resultados', field: f, where: 'activo=' + P.enc(res.activo)});
+      kvs(x, [['Situación', res.situacion || null, m('situacion')], ['Invertido (USD)', res.invertido == null ? null : P.usd(res.invertido), m('invertido')], ['Resultado (USD)', P.signed(res.resultado), m('resultado')], ['Rendimiento', res.rendimiento == null ? null : P.pct(res.rendimiento), m('rendimiento')]]);
+      if (res.como_se_mide) x.append(mk('p', 'pp-more', res.como_se_mide, m('como_se_mide')));
+    }
+    const hoy = new Date().toISOString().slice(0, 10);
+    const prox = flujos.filter((r) => /proyect|pago al venc/i.test(r.estado) && r.fecha >= hoy);
+    if (prox.length) {
+      const x = sec('Próximos cobros');
+      const t = mk('table', 'pp-flows', null, {source: prox[0]._src});
+      const hd = mk('tr'); ['Fecha', 'Interés', 'Capital', 'Total'].forEach((c, i) => hd.append(mk('th', i ? 'n' : '', c)));
+      const thead = mk('thead'); thead.append(hd); const tb = mk('tbody');
+      for (const r of prox.slice(0, 6)) {
+        const tr = mk('tr', r.amortizacion ? 'venc' : '');
+        const m = (f) => ({source: r._src, field: f, where: wT(r)});
+        tr.append(mk('td', '', P.date(r.fecha), m('fecha')), mk('td', 'n', r.interes == null ? '—' : P.fmt.format(',.2f')(r.interes), m('interes')),
+          mk('td', 'n', r.amortizacion == null ? '—' : P.fmt.format(',.2f')(r.amortizacion), m('amortizacion')), mk('td', 'n', r.cobro == null ? '—' : P.fmt.format(',.2f')(r.cobro), m('cobro')));
+        tb.append(tr);
+      }
+      t.append(thead, tb); x.append(t);
+      if (prox.length > 6) x.append(mk('p', 'pp-more', 'Y ' + (prox.length - 6) + ' pagos más hasta el ' + P.date(prox[prox.length - 1].fecha) + '.'));
+    }
+    const hechos = flujos.filter((r) => !/proyect|pago al venc/i.test(r.estado) || r.fecha < hoy);
+    if (hechos.length) {
+      const x = sec('Movimientos realizados');
+      const t = mk('table', 'pp-flows', null, {source: hechos[0]._src}); const tb = mk('tbody');
+      for (const r of hechos) {
+        const m = (f) => ({source: r._src, field: f, where: wT(r)});
+        const tr = mk('tr');
+        const c1 = mk('td'); c1.append(mk('div', '', P.date(r.fecha), m('fecha')), mk('span', /compra/i.test(r.estado) ? 'pp-tag p' : 'pp-tag', r.estado, m('estado')));
+        const c2 = mk('td', 'nt', r.nota || '', m('nota'));
+        const v = /compra/i.test(r.estado) ? null : r.cobro;
+        tr.append(c1, c2, mk('td', 'n', v == null ? '' : 'USD ' + P.fmt.format(',.2f')(v), m('cobro')));
+        tb.append(tr);
+      }
+      t.append(tb); x.append(t);
+    }
+
+    // Cash: por lugar
+    if (key(a) === 'CASH') {
+      const c = dash.data('cash');
+      const rows = (c.data || []).filter((r) => r.fecha === cur.fecha && r.usd).sort((p, q) => q.usd - p.usd);
+      if (rows.length) {
+        const x = sec('Dónde está el cash · ' + P.monthName(cur.fecha));
+        const t = mk('table', 'pp-flows', null, {source: 'cash'}); const tb = mk('tbody');
+        for (const r of rows) {
+          const tr = mk('tr'); const w = 'fecha=' + P.enc(r.fecha) + '&lugar=' + P.enc(r.lugar);
+          tr.append(mk('td', '', r.lugar, {source: 'cash', field: 'lugar', where: w}), mk('td', 'n', 'USD ' + P.usd(r.usd), {source: 'cash', field: 'usd', where: w}));
+          tb.append(tr);
+        }
+        t.append(tb); x.append(t);
+      }
+    }
+
+    // Préstamo: tasa y saldos
+    if (ka.includes('PRESTAM0')) {
+      const pr = (dash.data('prestamo').data || []);
+      const now = pr.find((r) => r.fecha === cur.fecha);
+      const next = pr.filter((r) => r.fecha > cur.fecha).slice(0, 6);
+      const x = sec('Préstamo');
+      const w = (r) => 'fecha=' + P.enc(r.fecha);
+      kvs(x, [['Tasa anual', now && now.tasa != null ? P.pct(now.tasa) : null, now ? {source: 'prestamo', field: 'tasa', where: w(now)} : null], ['Saldo al ' + P.date(cur.fecha), now ? P.usd(now.saldo) : null, now ? {source: 'prestamo', field: 'saldo', where: w(now)} : null]]);
+      if (next.length) {
+        const t = mk('table', 'pp-flows', null, {source: 'prestamo'}); const tb = mk('tbody');
+        for (const r of next) { const tr = mk('tr'); tr.append(mk('td', '', P.date(r.fecha), {source: 'prestamo', field: 'fecha', where: w(r)}), mk('td', 'n', 'USD ' + P.usd(r.saldo), {source: 'prestamo', field: 'saldo', where: w(r)})); tb.append(tr); }
+        t.append(tb); x.append(mk('p', 'pp-more', 'Saldo proyectado de los próximos meses:'), t);
+      }
+    }
+  });
+
+
+  const named = document.getElementById(location.hash.slice(1));
+  if (named) setTimeout(() => named.scrollIntoView(), 300);
+})();
+</script>
+
+<script>dash.start();</script>
+</body>
+</html>
