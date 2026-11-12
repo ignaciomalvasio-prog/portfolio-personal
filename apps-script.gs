@@ -9,7 +9,7 @@ const RANGOS = {
   portfolio: 'PORTFOLIO!B5:BZ40',
   on: 'ON!A1:L250',
   bonos: 'BONOS!A1:N250',
-  carry: "'CARRY TRADE'!A30:I45",
+  carry: "'CARRY TRADE'!A30:I114",
   prestamo: 'PRESTAMO!A1:P12',
   cash: 'CASH!A1:P20'
 };
